@@ -32,7 +32,13 @@
                 <input id="site-search" name="q" type="search" placeholder="Search...">
                 <button type="submit">Go</button>
             </form>
-            <a class="header-help" href="#accessibility">Keyboard and form help</a>
+            <div class="text-size-controls" role="group" aria-label="Text size controls">
+                <span>Text size:</span>
+                <button type="button" class="text-size-decrease" aria-label="Decrease text size">−</button>
+                <output class="text-size-value" aria-live="polite" aria-atomic="true">100%</output>
+                <button type="button" class="text-size-increase" aria-label="Increase text size">+</button>
+                <button type="button" class="text-size-reset">Reset</button>
+            </div>
             <button type="button" class="theme-toggle" aria-pressed="false">
                 Dark mode <span class="theme-toggle-state" aria-hidden="true">Off</span>
             </button>
@@ -46,6 +52,7 @@
             <li><a href="#apply">Apply Now</a></li>
             <li><a href="#schedule">Event Schedule</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><a href="#accessibility">Accessibility</a></li>
         </ul>
     </nav>
     <main class="content" id="main-content" tabindex="-1">
@@ -167,14 +174,6 @@
             </ul>
         </nav>
     </footer>
-
-    <div class="text-size-controls" role="group" aria-label="Text size controls">
-        <span>Text size:</span>
-        <button type="button" class="text-size-decrease" aria-label="Decrease text size">−</button>
-        <output class="text-size-value" aria-live="polite" aria-atomic="true">100%</output>
-        <button type="button" class="text-size-increase" aria-label="Increase text size">+</button>
-        <button type="button" class="text-size-reset">Reset</button>
-    </div>
 
     <script>
         (function () {

@@ -317,11 +317,6 @@ select:focus {
     opacity: 1;
 }
 
-.header-help {
-    color: var(--c-gold);
-    font-weight: 600;
-}
-
 .search button,
 .theme-toggle,
 .text-size-controls button {
@@ -355,22 +350,14 @@ select:focus {
 }
 
 .text-size-controls {
-    position: fixed;
-    right: 1rem;
-    bottom: max(1rem, env(safe-area-inset-bottom));
-    z-index: 20;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 0.5rem;
-    max-width: calc(100vw - 2rem);
-    padding: 0.65rem 0.75rem;
-    color: var(--c-text);
-    background: var(--c-card);
-    border: 1px solid var(--c-border);
-    border-radius: var(--radius);
-    box-shadow: 0 4px 16px #0005;
-    font-size: 1rem;
+    margin-left: 0.25rem;
+    padding-left: 1rem;
+    border-left: 1px solid var(--c-lavender);
+    color: var(--c-on-sky);
     font-weight: 700;
 }
 
@@ -704,6 +691,14 @@ select:focus {
     .search input {
         flex: 1 1 10rem;
         width: auto;
+    }
+
+    .text-size-controls {
+        margin-left: 0;
+        padding-left: 0;
+        border-left: 0;
+        border-top: 1px solid var(--c-lavender);
+        padding-top: 0.5rem;
     }
 
 
