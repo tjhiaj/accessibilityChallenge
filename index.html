@@ -32,6 +32,13 @@
                 <input id="site-search" name="q" type="search" placeholder="Search...">
                 <button type="submit">Go</button>
             </form>
+            <div class="text-size-controls" role="group" aria-label="Text size controls">
+                <span>Text size:</span>
+                <button type="button" class="text-size-decrease" aria-label="Decrease text size">−</button>
+                <output class="text-size-value" aria-live="polite" aria-atomic="true">100%</output>
+                <button type="button" class="text-size-increase" aria-label="Increase text size">+</button>
+                <button type="button" class="text-size-reset">Reset</button>
+            </div>
             <button type="button" class="theme-toggle" aria-pressed="false">
                 Dark mode <span class="theme-toggle-state" aria-hidden="true">Off</span>
             </button>
@@ -100,9 +107,6 @@
         (function () {
             var root = document.documentElement;
             var toggle = document.querySelector('.theme-toggle');
-            if (!toggle) { return; }
-            var stateText = toggle.querySelector('.theme-toggle-state');
-            if (!stateText) { return; }
             var osDark = window.matchMedia('(prefers-color-scheme: dark)');
 
             function isDark() {
@@ -111,19 +115,68 @@
             }
 
             function render() {
+                if (!toggle) { return; }
                 var dark = isDark();
+                var stateText = toggle.querySelector('.theme-toggle-state');
+                if (!stateText) { return; }
                 toggle.setAttribute('aria-pressed', String(dark));
                 stateText.textContent = dark ? 'On' : 'Off';
             }
 
-            toggle.addEventListener('click', function () {
-                var next = isDark() ? 'light' : 'dark';
-                root.setAttribute('data-theme', next);
-                try { localStorage.setItem('theme', next); } catch (e) { }
+            if (toggle) {
+                toggle.addEventListener('click', function () {
+                    var next = isDark() ? 'light' : 'dark';
+                    root.setAttribute('data-theme', next);
+                    try { localStorage.setItem('theme', next); } catch (e) { }
+                    render();
+                });
+                render();
+            }
+
+            if (osDark.addEventListener) { osDark.addEventListener('change', render); }
+        })();
+
+        (function () {
+            var root = document.documentElement;
+            var controls = document.querySelector('.text-size-controls');
+            var value = document.querySelector('.text-size-value');
+            if (!controls || !value) { return; }
+
+            var minSize = 80;
+            var maxSize = 150;
+            var step = 10;
+            var size = 100;
+            var savedSize;
+
+            try {
+                savedSize = Number(localStorage.getItem('textSize'));
+                if (savedSize >= minSize && savedSize <= maxSize && savedSize % step === 0) {
+                    size = savedSize;
+                }
+            } catch (e) { }
+
+            function render() {
+                root.style.setProperty('--text-scale', String(size / 100));
+                value.value = size + '%';
+                value.textContent = size + '%';
+                try { localStorage.setItem('textSize', String(size)); } catch (e) { }
+            }
+
+            controls.querySelector('.text-size-decrease').addEventListener('click', function () {
+                size = Math.max(minSize, size - step);
                 render();
             });
 
-            if (osDark.addEventListener) { osDark.addEventListener('change', render); }
+            controls.querySelector('.text-size-increase').addEventListener('click', function () {
+                size = Math.min(maxSize, size + step);
+                render();
+            });
+
+            controls.querySelector('.text-size-reset').addEventListener('click', function () {
+                size = 100;
+                render();
+            });
+
             render();
         })();
     </script>
