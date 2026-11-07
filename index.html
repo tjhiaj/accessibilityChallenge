@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HackTrent Accessibility Challenge</title>
-    <link rel="stylesheet" href="/reset.css">
-    <link rel="stylesheet" href="/styles.css">
+    <title>Accessibility Challenge - HackTrent</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -17,7 +17,7 @@
             <h1>HackTrent</h1>
             <p><i>@ Trent University</i></p>
         </div>
-        <form class="search" role="search">
+        <form class="search" role="search" action="" method="get">
             <label for="site-search">Search:</label>
             <input id="site-search" name="q" type="search" placeholder="Search...">
             <button type="submit">Go</button>
@@ -34,15 +34,14 @@
         </ul>
     </nav>
 
-    <main id="main-content" class="content">
+    <main id="main-content" class="content" tabindex="-1">
         <article id="home" aria-labelledby="about">
             <h2 id="about">About HackTrent</h2>
-            <img src="/assets/happyHackers.JPG" alt="Hackathon participants collaborating around laptops at a table" width="500">
+            <img src="assets/happyHackers.JPG" alt="Hackathon participants collaborating around laptops at a table" width="500">
             <p>lorem ipsum dolor sit amet consectetur adipiscing elit proident sunt placeat est quos incididunt amet
                 blanditiis et est deserunt ut laboris qui eum cum nam fugiat placeat sunt quo consequat dolore nisi
                 ullamco et sunt deserunt veniam reprehenderit et imperdiet cillum eum possimus quas at fugiat eiusmod
                 cumque voluptas dolor</p>
-
             <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                 dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
                 ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
@@ -56,7 +55,7 @@
         <ul>
             <li>
                 <article class="news">
-                    <img src="/assets/HackTrent2025.jpg" alt="HackTrent 2025 welcome event projected in a lecture hall" width="100">
+                    <img src="assets/HackTrent2025.jpg" alt="HackTrent 2025 welcome event projected in a lecture hall" width="100">
                     <div>
                         <h3><a href="#image">HackTrent 2025 Recap</a></h3>
                         <p><time datetime="2025-11-15">November 15, 2025</time></p>
