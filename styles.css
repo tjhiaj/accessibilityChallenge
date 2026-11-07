@@ -553,3 +553,45 @@ select:focus {
         border: 2px solid ButtonText;
     }
 }
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+.site-header .tagline { color: white; font-size: 1.25em; }
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 3px solid #ffd54f;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 5px var(--c-text);
+}
+a, button, input, select, textarea, summary { scroll-margin-block: 1.5rem; }
+.primary-nav a, .foot a, button, summary { min-height: 44px; }
+.primary-nav a, .foot a { display: inline-flex; align-items: center; }
+.content { align-items: start; text-align: left; }
+.sections { width: 100%; max-width: 70ch; }
+.content section { padding-block: 1.5rem; }
+.content h2 { padding-bottom: .5rem; font-weight: 700; }
+.content h3, legend { font-weight: 700; font-size: 1.15rem; }
+.content a { color: var(--c-link); text-underline-offset: .2em; }
+.content p { padding-top: .5rem; }
+fieldset { margin-block: 1.5rem; min-width: 0; }
+.field { margin-block: 1rem; }
+.field > label { display: block; font-weight: 600; margin-bottom: .35rem; }
+input, button, select, textarea { font: inherit; }
+.field input:not([type="checkbox"]), select, textarea {
+    display: block; width: 100%; min-height: 44px; padding: .6rem;
+    border: 2px solid var(--c-border); border-radius: 4px; color: var(--c-text); background: var(--c-surface);
+}
+textarea { resize: vertical; }
+input[type="checkbox"] { width: 1.4rem; height: 1.4rem; flex: 0 0 auto; accent-color: #6724a3; }
+.field > .checkbox-label { display: flex; align-items: center; gap: .75rem; min-height: 44px; cursor: pointer; }
+button { color: var(--c-on-button); padding: .6rem 1rem; background: var(--c-button); border: 2px solid var(--c-border); border-radius: 4px; cursor: pointer; font-weight: 700; }
+button:hover { filter: brightness(1.15); }
+.help { font-size: .95rem; }
+summary { cursor: pointer; padding: .5rem; text-decoration: underline; }
+@media (forced-colors: active) {
+    :focus-visible { outline: 3px solid Highlight; }
+}
+
+.header-help { color: white; padding: .65rem; text-underline-offset: .2em; }
+#application-result { display: none; }
+#application-result:target { display: block; margin-top: 1.5rem; padding: 1rem; border: 2px solid var(--c-border); }
+input:user-invalid, select:user-invalid { border: 3px solid var(--c-text); }
