@@ -1,10 +1,12 @@
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accessibility Challenge - HackTrent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Grenze+Gotisch:wght@700&family=Outfit:wght@400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="styles.css">
     <script>
@@ -16,16 +18,14 @@
         } catch (e) { }
     </script>
 </head>
-
 <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
     <header class="site-header">
         <div>
             <h1>HackTrent</h1>
-            <p><i>@ Trent University</i></p>
+            <p class="tagline">@ Trent University</p>
         </div>
-        <!-- Native form controls support Tab, Enter and Space as appropriate. -->
         <div class="header-tools">
             <form class="search" role="search" action="" method="get">
                 <label for="site-search">Search:</label>
@@ -39,6 +39,7 @@
                 <button type="button" class="text-size-increase" aria-label="Increase text size">+</button>
                 <button type="button" class="text-size-reset">Reset</button>
             </div>
+            <a class="header-help" href="#accessibility">Keyboard and form help</a>
             <button type="button" class="theme-toggle" aria-pressed="false">
                 Dark mode <span class="theme-toggle-state" aria-hidden="true">Off</span>
             </button>
@@ -54,10 +55,10 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
-
-    <main id="main-content" class="content" tabindex="-1">
-        <article id="home" aria-labelledby="about">
-            <h2 id="about">About HackTrent</h2>
+    <main class="content" id="main-content" tabindex="-1">
+        <div class="sections">
+        <section id="home" aria-labelledby="home-title" tabindex="-1">
+            <h2 id="home-title" tabindex="-1">About HackTrent</h2>
             <figure>
                 <img src="assets/happyHackers.JPG" alt="Hackathon participants collaborating around laptops at a table" width="500">
                 <figcaption>Participants collaborate on projects during a HackTrent event.</figcaption>
@@ -71,20 +72,91 @@
                 ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
                 fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
                 deserunt mollit anim id est laborum."</p>
-        </article>
+        </section>
+        <section id="about" aria-labelledby="about-title" tabindex="-1">
+            <h2 id="about-title" tabindex="-1">About Us</h2>
+            <p>HackTrent brings participants together at Trent University. Work with your team to make this website more accessible.</p>
+        </section>
+        <section id="apply" aria-labelledby="apply-title" tabindex="-1">
+            <h2 id="apply-title" tabindex="-1">Apply Now</h2>
+            <p id="application-help">Try the application form. This is a validation demonstration. Entries are not included in the form request or saved. Checking a valid form reloads the page and clears your entries. Fields marked “required” must be completed.</p>
+            <form id="application-form" aria-describedby="application-help" action="#application-result" method="get">
+                <fieldset>
+                    <legend>Your details</legend>
+                    <div class="field">
+                        <label for="full-name">Full name (required)</label>
+                        <input id="full-name" autocomplete="name" required maxlength="100" pattern=".*\S.*" title="Enter your full name, including at least one non-space character.">
+                    </div>
+                    <div class="field">
+                        <label for="email">Email address (required)</label>
+                        <input id="email" type="email" autocomplete="email" required aria-describedby="email-help">
+                        <p id="email-help" class="help">For example, name@example.com.</p>
+                    </div>
+                    <div class="field">
+                        <label for="team-size">Team size (required)</label>
+                        <select id="team-size" required>
+                            <option value="">Choose your team size</option>
+                            <option value="1">1 person</option><option value="2">2 people</option>
+                            <option value="3">3 people</option><option value="4">4 people</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="access-needs">Access needs (optional)</label>
+                        <textarea id="access-needs" rows="4" maxlength="1000" aria-describedby="access-help"></textarea>
+                        <p id="access-help" class="help">Share only what you are comfortable including in this demonstration.</p>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Before you finish</legend>
+                    <div class="field">
+                        <label class="checkbox-label" for="demo-consent"><input id="demo-consent" type="checkbox" required> I understand this is a demo application (required).</label>
+                    </div>
+                </fieldset>
+                <button type="submit">Check application</button>
+
+            </form>
+            <div id="application-result" tabindex="-1">
+                <h3>Demo check complete</h3>
+                <p>No application has been submitted. This demonstration checks required fields and email format only.</p>
+            </div>
+        </section>
+        <section id="schedule" aria-labelledby="schedule-title" tabindex="-1">
+            <h2 id="schedule-title" tabindex="-1">Event Schedule</h2>
+            <p>The event schedule has not been provided on this demonstration website.</p>
+        </section>
+        <section id="contact" aria-labelledby="contact-title" tabindex="-1">
+            <h2 id="contact-title" tabindex="-1">Contact</h2>
+            <p>Contact information has not been provided on this demonstration website.</p>
+        </section>
+        <section id="accessibility" aria-labelledby="accessibility-title" tabindex="-1">
+            <h2 id="accessibility-title" tabindex="-1">Accessibility</h2>
+            <details><summary>Keyboard and form help</summary>
+                <p>Use Tab to move forward and Shift + Tab to move back. Press Enter to follow links or submit a form, Space to toggle a checkbox, and arrow keys to choose a team size. The first link skips navigation.</p>
+                <p>If a required field is empty or your email format is invalid, the browser focuses the first invalid field and explains what to correct. Your entries stay in place while you correct errors.</p>
+            </details>
+        </section>
+        <section id="privacy" aria-labelledby="privacy-title" tabindex="-1">
+            <h2 id="privacy-title" tabindex="-1">Privacy Policy</h2>
+            <p>The demo form uses browser validation. Its fields have no submission names, so your entries are not included in the form request. Checking a valid form reloads this page without saving your entries.</p>
+        </section>
+        <section id="terms" aria-labelledby="terms-title" tabindex="-1">
+            <h2 id="terms-title" tabindex="-1">Terms of Use</h2>
+            <p>This website is an accessibility challenge demonstration, not an event registration service.</p>
+        </section>
+        </div>
     </main>
 
     <aside class="right-bar" aria-labelledby="news-heading">
         <h2 id="news-heading">Latest news</h2>
         <ul>
             <li>
-                <article class="news">
+                <article class="news" id="recap" tabindex="-1">
                     <figure>
                         <img src="assets/HackTrent2025.jpg" alt="HackTrent 2025 welcome event projected in a lecture hall" width="100">
                         <figcaption>HackTrent 2025 welcome event in a lecture hall.</figcaption>
                     </figure>
                     <div>
-                        <h3><a href="#image">HackTrent 2025 Recap</a></h3>
+                        <h3><a href="#recap">HackTrent 2025 Recap</a></h3>
                         <p><time datetime="2025-11-15">November 15, 2025</time></p>
                     </div>
                 </article>
@@ -181,5 +253,4 @@
         })();
     </script>
 </body>
-
 </html>
