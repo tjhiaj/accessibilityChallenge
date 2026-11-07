@@ -1,75 +1,81 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accessbility Challenge</title>
-    <link rel="stylesheet" href="/reset.css" />
-    <link rel="stylesheet" href="/styles.css" />
+    <title>HackTrent Accessibility Challenge</title>
+    <link rel="stylesheet" href="/reset.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 
 <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
 
-    <!-- Top header + Search bar-->
-    <section>
+    <header class="site-header">
         <div>
-            <h2>HackTrent</h2>
-            <h3><i>@ Trent University</i></h3>
+            <h1>HackTrent</h1>
+            <p><i>@ Trent University</i></p>
         </div>
-        <div class="search"><b>Search:</b><input type="url" placeholder="Search..."><button> Go</button></div>
-    </section>
+        <form class="search" role="search">
+            <label for="site-search">Search:</label>
+            <input id="site-search" name="q" type="search" placeholder="Search...">
+            <button type="submit">Go</button>
+        </form>
+    </header>
 
+    <nav class="primary-nav" aria-label="Main navigation">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#apply">Apply Now</a></li>
+            <li><a href="#schedule">Event Schedule</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-    <section>
-        <div onclick="location.href='#home'">Home</div>
-        <div onclick="location.href='#about'">About Us</div>
-        <div onclick="location.href='#apply'">Apply Now</div>
-        <div onclick="location.href='#schedule'">Event Schedule</div>
-        <div onclick="location.href='#contact'">Contact</div>
-    </section>
-
-    <section class="content">
-        <div>
-            <h4>Main content</h4>
-            <img src="/assets/happyHackers.JPG" width="500px">
+    <main id="main-content" class="content">
+        <article id="home" aria-labelledby="about">
+            <h2 id="about">About HackTrent</h2>
+            <img src="/assets/happyHackers.JPG" alt="Hackathon participants collaborating around laptops at a table" width="500">
             <p>lorem ipsum dolor sit amet consectetur adipiscing elit proident sunt placeat est quos incididunt amet
                 blanditiis et est deserunt ut laboris qui eum cum nam fugiat placeat sunt quo consequat dolore nisi
                 ullamco et sunt deserunt veniam reprehenderit et imperdiet cillum eum possimus quas at fugiat eiusmod
                 cumque voluptas dolor</p>
 
-            <br>
             <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                 dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
                 ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
                 fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum."
+                deserunt mollit anim id est laborum."</p>
+        </article>
+    </main>
 
-                
-            </p>
-
-
-    <section class="right-bar">
-        <p> this is the right content</p>
+    <aside class="right-bar" aria-labelledby="news-heading">
+        <h2 id="news-heading">Latest news</h2>
         <ul>
-
             <li>
-                <div class="news"><img
-                        src="/assets/HackTrent2025.jpg"
-                        width="100px">
-                    <div><a href="#image">HackTrent2025 Recap</a>
-                        <p>November 15, 2025</p>
+                <article class="news">
+                    <img src="/assets/HackTrent2025.jpg" alt="HackTrent 2025 welcome event projected in a lecture hall" width="100">
+                    <div>
+                        <h3><a href="#image">HackTrent 2025 Recap</a></h3>
+                        <p><time datetime="2025-11-15">November 15, 2025</time></p>
                     </div>
-                </div>
+                </article>
             </li>
         </ul>
-    </section>
+    </aside>
 
-    <section class="foot">
-        <span>© 2026 HackTrent. All rights reserved.</span>
-        <span><a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms of Use</a> | <a
-                href="#accessibility">Accessibility</a></span>
-    </section>
+    <footer class="foot">
+        <p>© 2026 HackTrent. All rights reserved.</p>
+        <nav aria-label="Legal">
+            <ul>
+                <li><a href="#privacy">Privacy Policy</a></li>
+                <li><a href="#terms">Terms of Use</a></li>
+                <li><a href="#accessibility">Accessibility</a></li>
+            </ul>
+        </nav>
+    </footer>
 </body>
-
 
 </html>

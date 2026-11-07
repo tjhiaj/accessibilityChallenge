@@ -1,12 +1,12 @@
 body {
     margin: 0;
     display: grid;
-    grid-template-columns: 220px 1fr 220px;
+    grid-template-columns: 220px minmax(0, 1fr) 220px;
     grid-template-rows: auto 1fr auto;
 }
 
 /* Top header + search bar */
-section:first-child {
+.site-header {
     grid-column: 1 / 4;
     grid-row: 1;
     display: flex;
@@ -16,15 +16,13 @@ section:first-child {
     background-color: blueviolet;
 }
 
-/* Welcome to HackTrent header */
-h2 {
+.site-header h1 {
     font-size: 2em;
     background-color: blueviolet;
     color: purple;
 }
 
-/* Trent University tagline */
-h3 {
+.site-header p {
     font-size: 2.1em;
     background-color: blueviolet;
     color: purple;
@@ -32,32 +30,40 @@ h3 {
 }
 
 /* Navigation sidebar */
-section:nth-child(2) {
+.primary-nav {
     grid-column: 1;
     grid-row: 2;
-    display: flex;
-    flex-direction: column;
-    gap: 3em;
     background-color: purple;
     color: blue;
     padding: 1em;
 }
 
+.primary-nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+    list-style: none;
+}
+
+.primary-nav a {
+    color: inherit;
+}
+
 /* Search bar */
-div.search {
+.search {
     display: flex;
     align-items: center;
     gap: 1em;
 }
 
 /* Input field */
-div.search input {
+.search input {
     background-color: aqua;
     padding: 0.1em;
 }
 
 /* Go button */
-div.search button {
+.search button {
     background: aqua;
     font-size: 1em;
 }
@@ -75,8 +81,12 @@ div.search button {
     padding-bottom: 1em;
 }
 
-/*Main content header in center*/
-.content h4 {
+.content img {
+    max-width: 100%;
+    height: auto;
+}
+
+.content h2 {
     text-align: center;
     font-size: 2em;
     padding-bottom: 1em;
@@ -85,17 +95,6 @@ div.search button {
 /*Content text*/
 .content p {
     padding-top: 1em;
-}
-
-.content table {
-    color: whitesmoke;
-    padding: 1em;
-    text-align: center;
-}
-
-.content table td
-{
-    padding: 1em;
 }
 
 /* Right sidebar */
@@ -112,8 +111,29 @@ div.search button {
     font-size: 1.1em;
 }
 
+.right-bar h2 {
+    font-size: 1.5em;
+    padding-bottom: 0.5em;
+}
+
 .right-bar ul li {
     padding-bottom: 1em;
+    list-style: none;
+}
+
+.news {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75em;
+}
+
+.news img {
+    max-width: 100%;
+    height: auto;
+}
+
+.news h3 {
+    font-size: 1em;
 }
 
 /* Footer */
@@ -126,8 +146,37 @@ div.search button {
     padding: 1em;
 }
 
-/*Footer text*/
-.foot span {
-    padding: 1em;
+.foot nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 0.5em;
+    list-style: none;
+    margin-top: 1em;
+}
+
+.foot a {
     color: purple;
+}
+
+.skip-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    padding: 0.75em 1em;
+    background: white;
+    color: black;
+    transform: translateY(-150%);
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 5px #111;
 }
