@@ -1,0 +1,23 @@
+Manual Accessibility Tests
+
+Record Pass, Fail or Not tested for each check, plus browser and any issues.
+
+- Images: Alt text describes each photo; captions provide useful context.
+- Structure: Headings and header, nav, main, section, article, aside and footer identify content clearly.
+- Keyboard: Tab and Shift+Tab reach all controls in order without traps. The skip link reaches main content.
+- Focus: Focus indicators stay visible in light mode, dark mode and high contrast.
+- Actions: Enter activates links/buttons; Space operates buttons/checkboxes/help; keyboard commands operate the select.
+- Forms: Labels, required fields, optional fields and instructions are clear and announced by a screen reader.
+- Errors: Empty required fields, whitespace-only names and invalid emails block submission and focus the invalid field. Entries remain while correcting errors.
+- Completion: Valid input shows the demo confirmation without personal data in the URL.
+- Contrast: Measure both themes: normal text at least 4.5:1; large text and essential interface indicators at least 3:1.
+- Colour and shapes: Meaning remains clear in grayscale through text, underlines and control shapes, not colour alone.
+- Text: At 200%/400% zoom and 320px width, content stays readable without clipping or horizontal scrolling.
+- Screen reader: Check headings, landmarks, image descriptions, labels, errors and control states with VoiceOver or NVDA.
+- Multimedia: If audio/video is added, check captions, transcripts and alternatives for essential visuals. Otherwise mark not applicable.
+- Motion: Reduced-motion settings stop decorative animation; contrast settings preserve readable controls.
+- Functionality: Check search results, recap links and useful content. Record placeholders and nonworking interactions as issues.
+
+Review POUR: Perceivable, Operable, Understandable, Robust.
+Optional: Run axe DevTools or IBM Equal Access; manually verify findings.
+These are test instructions, not completed results or a guarantee of full accessibility.
