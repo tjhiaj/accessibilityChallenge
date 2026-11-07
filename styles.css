@@ -322,11 +322,27 @@ select:focus {
     margin-bottom: 1.25rem;
 }
 
-.content img {
+.content figure {
     width: 100%;
     max-width: 32rem;
     margin: 0 auto 1.5rem;
+}
+
+.content img {
+    width: 100%;
     border-radius: var(--radius);
+}
+
+.content figcaption,
+.right-bar figcaption {
+    margin-top: 0.5rem;
+    color: var(--c-text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.4;
+}
+
+.content figcaption {
+    text-align: center;
 }
 
 .content p {
@@ -389,6 +405,11 @@ select:focus {
 
 .right-bar .news img {
     border-radius: var(--radius);
+}
+
+.right-bar .news figure {
+    width: 100%;
+    margin: 0;
 }
 
 .right-bar .news a {
@@ -465,6 +486,10 @@ select:focus {
         flex-direction: row;
         align-items: center;
         gap: 1rem;
+    }
+
+    .right-bar .news figure {
+        flex: 0 1 12rem;
     }
 }
 
