@@ -1,68 +1,116 @@
 body {
     margin: 0;
     display: grid;
-    grid-template-columns: 220px 1fr 220px;
+    grid-template-columns: 220px minmax(0, 1fr) 220px;
     grid-template-rows: auto 1fr auto;
 }
 
-/* Top header + search bar */
-section:first-child {
+/* Give keyboard users an unmistakable focus indicator across the page. */
+:where(a, button, input):focus-visible {
+    outline: 3px solid #ffd54f;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 5px #211037;
+}
+
+/* Focus can be moved to the main landmark with the skip link. */
+#main-content:focus {
+    outline: 3px solid #ffd54f;
+    outline-offset: -4px;
+}
+
+.skip-link {
+    position: fixed;
+    z-index: 100;
+    left: 1rem;
+    top: 0.75rem;
+    transform: translateY(-200%);
+    padding: 0.65rem 1rem;
+    background: #fff;
+    color: #26104b;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+    transform: translateY(0);
+}
+
+/* Header and search */
+.site-header {
     grid-column: 1 / 4;
     grid-row: 1;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 1rem;
     padding: 15px 25px;
     background-color: blueviolet;
 }
 
-/* Welcome to HackTrent header */
-h2 {
+.site-header h1 {
     font-size: 2em;
-    background-color: blueviolet;
-    color: purple;
+    color: white;
 }
 
-/* Trent University tagline */
-h3 {
+.site-header h3 {
     font-size: 2.1em;
-    background-color: blueviolet;
-    color: purple;
+    color: white;
     display: flex;
 }
 
-/* Navigation sidebar */
-section:nth-child(2) {
+.search {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.search label {
+    color: white;
+    font-weight: bold;
+}
+
+.search input {
+    background-color: aqua;
+    padding: 0.35em;
+    min-width: 0;
+    border: 1px solid #211037;
+}
+
+.search button {
+    background: aqua;
+    font-size: 1em;
+    padding: 0.35em 0.7em;
+    border: 1px solid #211037;
+    cursor: pointer;
+}
+
+/* Main navigation uses links, so Tab and Enter work natively. */
+.site-nav {
     grid-column: 1;
     grid-row: 2;
     display: flex;
     flex-direction: column;
     gap: 3em;
     background-color: purple;
-    color: blue;
     padding: 1em;
 }
 
-/* Search bar */
-div.search {
-    display: flex;
-    align-items: center;
-    gap: 1em;
+.site-nav a {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    padding: 0.15em 0.25em;
+    color: white;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
 }
 
-/* Input field */
-div.search input {
-    background-color: aqua;
-    padding: 0.1em;
+.site-nav a:hover {
+    background: #4d006b;
 }
 
-/* Go button */
-div.search button {
-    background: aqua;
-    font-size: 1em;
-}
-
-/* Content */
+/* Center content */
 .content {
     grid-column: 2;
     grid-row: 2;
@@ -70,21 +118,24 @@ div.search button {
     justify-content: center;
     align-items: center;
     background-color: black;
-    color: darkblue;
+    color: #f3f0ff;
     text-align: center;
-    padding-bottom: 1em;
+    padding: 1em;
+    min-width: 0;
 }
 
-/*Main content header in center*/
-.content h4 {
-    text-align: center;
+.content h2 {
     font-size: 2em;
     padding-bottom: 1em;
 }
 
-/*Content text*/
 .content p {
     padding-top: 1em;
+}
+
+.content img {
+    max-width: 100%;
+    height: auto;
 }
 
 .content table {
@@ -93,8 +144,7 @@ div.search button {
     text-align: center;
 }
 
-.content table td
-{
+.content table td {
     padding: 1em;
 }
 
@@ -116,6 +166,11 @@ div.search button {
     padding-bottom: 1em;
 }
 
+.right-bar a {
+    color: #002c6c;
+    text-decoration: underline;
+}
+
 /* Footer */
 .foot {
     grid-column: 1 / 4;
@@ -126,8 +181,45 @@ div.search button {
     padding: 1em;
 }
 
-/*Footer text*/
 .foot span {
     padding: 1em;
-    color: purple;
+    color: white;
+}
+
+.foot a {
+    color: white;
+    text-decoration: underline;
+}
+
+/* Keep the tab order aligned with the visual reading order on small screens. */
+@media (max-width: 800px) {
+    body {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto auto auto auto auto;
+    }
+
+    .site-header, .site-nav, .content, .right-bar, .foot {
+        grid-column: 1;
+    }
+
+    .site-header {
+        grid-row: 1;
+        flex-wrap: wrap;
+    }
+
+    .site-nav {
+        grid-row: 2;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.75em 1.25em;
+    }
+
+    .content { grid-row: 3; }
+    .right-bar { grid-row: 4; }
+    .foot { grid-row: 5; }
+}
+
+@media (max-width: 400px) {
+    .search { flex-wrap: wrap; }
+    .foot span { display: block; padding: 0.5em; }
 }
