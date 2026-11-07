@@ -7,6 +7,14 @@
     <title>Accessibility Challenge - HackTrent</title>
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="styles.css">
+    <script>
+        try {
+            var savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light' || savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            }
+        } catch (e) { }
+    </script>
 </head>
 
 <body>
@@ -17,11 +25,17 @@
             <h1>HackTrent</h1>
             <p><i>@ Trent University</i></p>
         </div>
-        <form class="search" role="search" action="" method="get">
-            <label for="site-search">Search:</label>
-            <input id="site-search" name="q" type="search" placeholder="Search...">
-            <button type="submit">Go</button>
-        </form>
+        <!-- Native form controls support Tab, Enter and Space as appropriate. -->
+        <div class="header-tools">
+            <form class="search" role="search" action="" method="get">
+                <label for="site-search">Search:</label>
+                <input id="site-search" name="q" type="search" placeholder="Search...">
+                <button type="submit">Go</button>
+            </form>
+            <button type="button" class="theme-toggle" aria-pressed="false">
+                Dark mode <span class="theme-toggle-state" aria-hidden="true">Off</span>
+            </button>
+        </div>
     </header>
 
     <nav class="primary-nav" aria-label="Main navigation">
@@ -75,6 +89,38 @@
             </ul>
         </nav>
     </footer>
+
+    <script>
+        (function () {
+            var root = document.documentElement;
+            var toggle = document.querySelector('.theme-toggle');
+            if (!toggle) { return; }
+            var stateText = toggle.querySelector('.theme-toggle-state');
+            if (!stateText) { return; }
+            var osDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+            function isDark() {
+                var chosen = root.getAttribute('data-theme');
+                return chosen ? chosen === 'dark' : osDark.matches;
+            }
+
+            function render() {
+                var dark = isDark();
+                toggle.setAttribute('aria-pressed', String(dark));
+                stateText.textContent = dark ? 'On' : 'Off';
+            }
+
+            toggle.addEventListener('click', function () {
+                var next = isDark() ? 'light' : 'dark';
+                root.setAttribute('data-theme', next);
+                try { localStorage.setItem('theme', next); } catch (e) { }
+                render();
+            });
+
+            if (osDark.addEventListener) { osDark.addEventListener('change', render); }
+            render();
+        })();
+    </script>
 </body>
 
 </html>
